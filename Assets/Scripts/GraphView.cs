@@ -9,21 +9,21 @@ public class GraphView : MonoBehaviour
 
     void Start()
     {
-        //Get all nodes from the editor mode
+        // Get all nodes from the editor mode
         nodeViewCollection = GameObject.FindObjectsOfType<NodeView>();
 
         InitNodes();
 
-        Debug();
+        PrintNodesWithEdges();
     }
 
     public void InitNodes()
     {
-        //Initialize all the nodes data
+        // Initialize all the nodes data
         graph.InitNodesCollectionFromView(nodeViewCollection);
     }
 
-    public void Debug()
+    public void PrintNodesWithEdges()
     {        
         for (int i = 0; i < nodeViewCollection.Length; i++)
         {
@@ -31,7 +31,7 @@ public class GraphView : MonoBehaviour
 
             for (int j = 0; j < nodeViewCollection[i].node.Neighboors.Count; j++)
             {
-                text += nodeViewCollection[i].node.Neighboors[j].Key + " - " + nodeViewCollection[i].node.Neighboors[j].Value + "\n";
+                text += "(" + nodeViewCollection[i].node.Neighboors[j].Key + "; " + nodeViewCollection[i].node.Neighboors[j].Value + ") || ";
             }
 
             print(text);

@@ -14,9 +14,8 @@ public class Graph
         {
             nodeCollection[i] = new Node(i);
             nodeViewCollection[i].node = nodeCollection[i];
-
-            //Just to change the node name in the view
-            nodeViewCollection[i].name = "N" + i;
+            
+            nodeViewCollection[i].name = "N" + i; // Just to change the node name in the editor
             nodeViewCollection[i].InitNodeEdges();
         }
     }
