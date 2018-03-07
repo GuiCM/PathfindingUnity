@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NodeView : MonoBehaviour
 {
-    public int[] edgesIndex;
+    public int[] destinyNodeIndex;
     public int[] edgesCost;
 
     public Node node;
@@ -13,9 +13,9 @@ public class NodeView : MonoBehaviour
     {
         if (node != null)
         {
-            for (int i = 0; i < edgesIndex.Length; i++)
+            for (int i = 0; i < destinyNodeIndex.Length; i++)
             {
-                node.Neighboors.Add(new KeyValuePair<int, int>(edgesIndex[i], edgesCost[i]));
+                node.Neighboors.Add(new KeyValuePair<int, int>(destinyNodeIndex[i], edgesCost[i]));
             }
         }
     }
