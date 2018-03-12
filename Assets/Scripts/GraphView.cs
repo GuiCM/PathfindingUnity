@@ -1,35 +1,45 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class GraphView : MonoBehaviour
 {
-    private Dijkstra dijkstra;
+    [SerializeField]
+    private LineDrawer lineDrawer;
+
+    private DefaultDijkstra dijkstra;
     private NodeView[] nodeViewCollection;
     private Graph graph = new Graph();
 
     void Start()
     {
-        // Get all nodes from the editor mode
+        // Get all nodes from editor mode
         nodeViewCollection = GameObject.FindObjectsOfType<NodeView>();
 
-        InitNodes();
+        //InitNodes();
 
-        PrintNodesWithEdges();
+        //PrintNodesWithEdges();
 
-        dijkstra = new Dijkstra();
+        TestDefaultDijkstra();
+    }
+
+    private void TestDefaultDijkstra()
+    {
+        dijkstra = new DefaultDijkstra();
         dijkstra.TestDijkstra();
 
         string text = string.Empty;
-
         for (int i = 0; i < dijkstra.Costs.Count; i++)
-        {       
+        {
             text += dijkstra.Costs[i];
             text += " caminho: " + dijkstra.ParentNodesPath[i];
             text += "\n";
         }
 
         print(text);
+
+        int[] path = dijkstra.MainPath;
+
+        lineDrawer.DrawLines(nodeViewCollection, path);
     }
 
     /// <summary>
