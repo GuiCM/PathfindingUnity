@@ -7,9 +7,9 @@ public class NodeView : MonoBehaviour
     public int[] destinyNodeIndex;
     public int[] edgesCost;
 
-    public Node node;
-
     public int nodeIndex;
+
+    public Node node;
 
     public void InitNodeEdges()
     {
