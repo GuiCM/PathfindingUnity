@@ -1,53 +1,40 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 using UnityEngine;
 
 /// <summary>
-/// Class to handle the visual nodes
+/// Handle the nodes collection in the graphical representation
 /// </summary>
 public class GraphView : MonoBehaviour
 {
-    private Graph graph = new Graph();
+    /// <summary>
+    /// Represent the graph data.
+    /// </summary>
+    public Graph graph;
 
     /// <summary>
-    /// The visual nodes present in the scene
+    /// The visual nodes present in the scene.
     /// </summary>
     public NodeView[] NodeViewCollection { get; set; }
 
     void Awake()
     {
-        // Get all nodes from editor mode
+        graph = new Graph();
         NodeViewCollection = GameObject.FindObjectsOfType<NodeView>();
 
-        //InitNodes();    
-        //PrintNodesWithEdges();
+        NodeViewCollection = NodeViewCollection.OrderBy(x => x.nodeIndex).ToArray();
+        InitializeNodesData();
     }
 
     /// <summary>
-    /// Initialize a collection of <see cref="Node"/> data containing all the node informations
+    /// Initialize a collection of <see cref="Node"/> data containing all the nodes informations.
     /// </summary>
-    private void InitNodes()
+    private void InitializeNodesData()
     {
         graph.InitNodesCollectionFromView(NodeViewCollection);
     }
 
-    private void PrintNodesWithEdges()
-    {
-        for (int i = 0; i < NodeViewCollection.Length; i++)
-        {
-            string text = NodeViewCollection[i].name + "; Arestas: ";
-
-            for (int j = 0; j < NodeViewCollection[i].node.Neighboors.Count; j++)
-            {
-                text += "(" + NodeViewCollection[i].node.Neighboors[j].Key + "; " + NodeViewCollection[i].node.Neighboors[j].Value + ") || ";
-            }
-
-            print(text);
-            print("------------------------------------------------------------");
-        }
-    }
-
     #region REMOVE
-
+    /*
     /// <summary>
     /// Create a simple structure to be used by the Dijkstra algorithm
     /// <para>The structure respect the rule Ex.: graph[0, 3] = 3 (Node 0 to node 3 has an edge with cost 3)</para>
@@ -66,7 +53,7 @@ public class GraphView : MonoBehaviour
                 graphArray[currentNodeNeighboors[j].Key, i] = currentNodeNeighboors[j].Value; // Ex.: graph[3, 0] = 4
             }
         }
-    }
+    }*/
 
     #endregion REMOVE
 }

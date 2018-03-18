@@ -19,6 +19,12 @@ public class LineDrawer : MonoBehaviour {
     [SerializeField]
     private GraphView graphView;
 
+    private void Start()
+    {
+        if (graphView == null)
+            Debug.LogWarning("GraphView object not attached to the LineDrawer!");
+    }
+
     /// <summary>
     /// Draw a line between all the given nodes position to mark the way.
     /// </summary>

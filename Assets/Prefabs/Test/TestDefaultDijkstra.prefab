@@ -51,5 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 996e370d0de1f3546ba882ee13858ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineDrawer: {fileID: 114377862544194828, guid: aa353fc54ed1a5d4a90287e77f0e48e0,
-    type: 2}
+  lineDrawer: {fileID: 0}
+  startNode: 0
+  destinyNode: 0

@@ -15,6 +15,12 @@ public class TestDefaultDijkstra : MonoBehaviour
 
     private void Start()
     {
+        if (lineDrawer == null)
+        {
+            Debug.LogWarning("LineDrawer object not attached to the TestDefaultDijkstra!");
+            return;
+        }
+        
         startNode = 0;
         destinyNode = 8;
         defaultDijkstra = new DefaultDijkstra();

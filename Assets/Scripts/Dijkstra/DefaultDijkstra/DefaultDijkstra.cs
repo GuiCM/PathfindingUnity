@@ -22,7 +22,7 @@ public class DefaultDijkstra
     private int[] parentNodes;
 
     /// <summary>
-    /// The list of the node costs if the dijkstra was already calculated
+    /// The list of the node costs if the dijkstra was already calculated.
     /// </summary>
     public List<int> NodeCosts
     {
@@ -36,7 +36,7 @@ public class DefaultDijkstra
     }
 
     /// <summary>
-    /// Return the list of the path from the start node to the destiny node
+    /// Return the list of the path from the start node to the destiny node.
     /// </summary>
     public List<int> Path
     {
@@ -91,8 +91,7 @@ public class DefaultDijkstra
             }
 
             isNodeVisited[currentNode] = true;
-
-            // 
+            
             for (int j = 0; j < nodeCount; j++)
             {
                 if ((graph[currentNode, j] > 0) && (distanceStartNodeToNode[currentNode] + graph[currentNode, j] < distanceStartNodeToNode[j]))
@@ -109,7 +108,7 @@ public class DefaultDijkstra
     }
 
     /// <summary>
-    /// Clear the costs and the path list to calculate the Dijkstra
+    /// Clear the costs and the path list to calculate the Dijkstra.
     /// </summary>
     private void ClearLists()
     {
