@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
 /// Handle each node in the graphical representation.
@@ -22,13 +23,16 @@ public class NodeView : MonoBehaviour
     public Transform[] nodesToConect;
 
     /// <summary>
-    /// Initializes all the nodes conection that this node has.
+    /// Initializes all the conections that this node has (all the edges linked to this node).
     /// </summary>
     public void InitializeNodeEdges()
     {
-        foreach (Transform transform in nodesToConect)
+        foreach (Transform neighboorNodeTransform in nodesToConect)
         {
-            print(transform);
+            NodeView neighboorNodeView = neighboorNodeTransform.transform.GetComponent<NodeView>();
+            int distance = Mathf.RoundToInt(Vector3.Distance(transform.position, neighboorNodeTransform.position));
+
+            node.Neighboors.Add(new KeyValuePair<Node, int>(neighboorNodeView.node, distance));
         }
     }
 }

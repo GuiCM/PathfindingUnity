@@ -13,7 +13,7 @@ public class TestDefaultDijkstraEditor : Editor
         TestDefaultDijkstra testDefaultDijkstra = (TestDefaultDijkstra)target;
 
         GUILayout.Space(10);
-        if (GUILayout.Button("Calcular Dijkstra"))
+        if (GUILayout.Button("Calcular Dijkstra (Implementação padrão)"))
         {
             testDefaultDijkstra.CallDefaultDijkstra();
         }       

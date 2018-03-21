@@ -28,14 +28,13 @@ public class LineDrawer : MonoBehaviour {
     /// <summary>
     /// Draw a line between all the given nodes position to mark the way.
     /// </summary>
-    /// <param name="path">An array of the nodes index.</param>
+    /// <param name="path">A list of the nodes index.</param>
     public void DrawPath(List<int> path)
     {        
         NodeView[] nodeViewCollection = graphView.NodeViewCollection;
 
         GameObject line = CreateLine();
         LineRenderer lineRenderer = line.GetComponent<LineRenderer>();
-
         lineRenderer.positionCount = path.Count;
 
         for (int i = 0; i < path.Count; i++)
@@ -53,10 +52,22 @@ public class LineDrawer : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Draw a line between all the given nodes position to mark the way.
+    /// </summary>
+    /// <param name="path">A list of nodes.</param>
     public void DrawPath(List<NodeView> nodes)
     {
-        Debug.LogWarning("To implement.");
-        throw new NotImplementedException();
+        NodeView[] nodeViewCollection = graphView.NodeViewCollection;
+
+        GameObject line = CreateLine();
+        LineRenderer lineRenderer = line.GetComponent<LineRenderer>();
+        lineRenderer.positionCount = nodes.Count;
+
+        for (int i = 0; i < nodes.Count; i++)
+        {
+            lineRenderer.SetPosition(i, new Vector3(nodes[i].transform.position.x, 0.5f, nodes[i].transform.position.z));
+        }
     }
 
     /// <summary>

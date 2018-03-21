@@ -31,11 +31,18 @@ public class Graph
     {
         nodeCollection = new Node[nodeViewCollection.Length];
 
+        // Initializes all the nodes
         for (int i = 0; i < nodeViewCollection.Length; i++)
         {
             nodeCollection[i] = new Node(nodeViewCollection[i].nodeIndex);
 
-            nodeViewCollection[i].node = nodeCollection[i];
+            nodeViewCollection[i].node = nodeCollection[i];            
+        }
+
+        // Initializes all the nodes edges (this process needs to be done
+        // after all the nodes be already initialized)
+        for (int i = 0; i < nodeViewCollection.Length; i++)
+        {
             nodeViewCollection[i].InitializeNodeEdges();
         }
     }

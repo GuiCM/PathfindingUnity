@@ -14,6 +14,24 @@ public class TestDijkstraV2 : MonoBehaviour
     private GraphView graphView;
 
     /// <summary>
+    /// The class used to draw the lines on the scene to show the path.
+    /// </summary>
+    [SerializeField]
+    private LineDrawer lineDrawer;
+
+    /// <summary>
+    /// The node marked as the start.
+    /// </summary>
+    [SerializeField]
+    private NodeView startNode;
+
+    /// <summary>
+    /// The node marked as the destiny.
+    /// </summary>
+    [SerializeField]
+    private NodeView destinyNode;
+
+    /// <summary>
     /// The graph data informations
     /// </summary>
     private Graph graph;
@@ -25,15 +43,43 @@ public class TestDijkstraV2 : MonoBehaviour
 
     private void Start()
     {
+        if (graphView == null)
+        {
+            Debug.LogWarning("GraphView object not attached to the TestDijkstraV2!");
+            return;
+        }
+
+        if (lineDrawer == null)
+        {
+            Debug.LogWarning("LineDrawer object not attached to the TestDijkstraV2!");
+            return;
+        }
+
         dijkstra = new DijkstraV2();
-
         graph = graphView.graph;
+
+        // FOR NOW
         MockNodeEdges();
+    }
 
+    /// <summary>
+    /// Resolve the dijkstra algorithm using the version 2.
+    /// </summary>
+    public void CallTestDijkstraV2()
+    {
+        if (startNode == null || destinyNode == null)
+        {
+            Debug.LogWarning("É necessário atribuir um nó de início de um nó de destino para realizar a busca!");
+            return;
+        }
+
+        destinyNode = graphView.NodeViewCollection[7];
+
+        // dijkstra.CalculateDijkstra(graph.Nodes, this.startNode.node, this.destinyNode.node);
         dijkstra.CalculateDijkstra(graph.Nodes, graph.Nodes[0], graph.Nodes[7]);
-
-        print("Alguma coisa fez!");
         print(graph.Nodes[7].DistanceFromStartNode);
+
+        ShowMainPath();
     }
 
     /// <summary>
@@ -104,4 +150,26 @@ public class TestDijkstraV2 : MonoBehaviour
         nodeAux[11].Neighboors.Add(new KeyValuePair<Node, int>(nodeAux[0], 10));
         nodeAux[11].Neighboors.Add(new KeyValuePair<Node, int>(nodeAux[9], 3));
     }
+
+    #region Auxiliar Methods
+
+    private void ShowMainPath()
+    {
+        List<NodeView> nodesPath = new List<NodeView>();
+        nodesPath.Add(destinyNode);
+
+        Node parentNode = destinyNode.node.ParentNode;
+
+        while (parentNode != null)
+        {
+            parentNode = parentNode.ParentNode;
+            nodesPath.Add(graphView.NodeViewCollection.Where(x => x.node == parentNode).FirstOrDefault());
+        }
+
+        nodesPath.Add(graphView.NodeViewCollection.Where(x => x.node == parentNode).FirstOrDefault());
+
+        lineDrawer.DrawPath(nodesPath);
+    }
+
+    #endregion Auxiliar Methods
 }

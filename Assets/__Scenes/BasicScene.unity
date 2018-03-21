@@ -228,7 +228,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &80373440
 Transform:
   m_ObjectHideFlags: 0
@@ -3820,7 +3820,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &95643711
 Transform:
   m_ObjectHideFlags: 0
@@ -33325,7 +33325,7 @@ Prefab:
     - target: {fileID: 114274797202915336, guid: 793a3c73b0eb1764a860cfbd96fd6cd2,
         type: 2}
       propertyPath: nodesToConect.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4053307767470002, guid: 793a3c73b0eb1764a860cfbd96fd6cd2, type: 2}
       propertyPath: m_LocalPosition.x
@@ -33368,6 +33368,21 @@ Prefab:
       propertyPath: nodesToConect.Array.data[0]
       value: 
       objectReference: {fileID: 1198811771}
+    - target: {fileID: 114274797202915336, guid: 793a3c73b0eb1764a860cfbd96fd6cd2,
+        type: 2}
+      propertyPath: nodeIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114274797202915336, guid: 793a3c73b0eb1764a860cfbd96fd6cd2,
+        type: 2}
+      propertyPath: nodesToConect.Array.data[1]
+      value: 
+      objectReference: {fileID: 428142424}
+    - target: {fileID: 114274797202915336, guid: 793a3c73b0eb1764a860cfbd96fd6cd2,
+        type: 2}
+      propertyPath: nodesToConect.Array.data[2]
+      value: 
+      objectReference: {fileID: 764501230}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 793a3c73b0eb1764a860cfbd96fd6cd2, type: 2}
   m_IsPrefabParent: 0
@@ -37945,7 +37960,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 826369144
+  randomSeed: -391725657
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -45116,6 +45131,21 @@ Prefab:
       propertyPath: graphView
       value: 
       objectReference: {fileID: 62701791}
+    - target: {fileID: 114356080228195042, guid: 20e8e5ec0cecc4e42bbbb7bf8ed3d512,
+        type: 2}
+      propertyPath: lineDrawer
+      value: 
+      objectReference: {fileID: 27011285}
+    - target: {fileID: 114356080228195042, guid: 20e8e5ec0cecc4e42bbbb7bf8ed3d512,
+        type: 2}
+      propertyPath: startNode
+      value: 
+      objectReference: {fileID: 1290037312}
+    - target: {fileID: 114356080228195042, guid: 20e8e5ec0cecc4e42bbbb7bf8ed3d512,
+        type: 2}
+      propertyPath: destinyNode
+      value: 
+      objectReference: {fileID: 1258360706}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 20e8e5ec0cecc4e42bbbb7bf8ed3d512, type: 2}
   m_IsPrefabParent: 0
@@ -68050,7 +68080,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 826369144
+  randomSeed: 1358320005
   InitialModule:
     serializedVersion: 3
     enabled: 1

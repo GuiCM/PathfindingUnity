@@ -19,9 +19,8 @@ public class GraphView : MonoBehaviour
     void Awake()
     {
         graph = new Graph();
-        NodeViewCollection = GameObject.FindObjectsOfType<NodeView>();
+        NodeViewCollection = GameObject.FindObjectsOfType<NodeView>().OrderBy(x => x.nodeIndex).ToArray();
 
-        NodeViewCollection = NodeViewCollection.OrderBy(x => x.nodeIndex).ToArray();
         InitializeNodesData();
     }
 
