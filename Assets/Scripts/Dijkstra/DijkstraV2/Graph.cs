@@ -34,7 +34,7 @@ public class Graph
         // Initializes all the nodes
         for (int i = 0; i < nodeViewCollection.Length; i++)
         {
-            nodeCollection[i] = new Node(nodeViewCollection[i].nodeIndex);
+            nodeCollection[i] = new Node(nodeViewCollection[i].nodeIndex, nodeViewCollection[i].transform);
 
             nodeViewCollection[i].node = nodeCollection[i];            
         }

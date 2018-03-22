@@ -155,18 +155,18 @@ public class TestDijkstraV2 : MonoBehaviour
 
     private void ShowMainPath()
     {
-        List<NodeView> nodesPath = new List<NodeView>();
-        nodesPath.Add(destinyNode);
+        List<Node> nodesPath = new List<Node>();
+        nodesPath.Add(destinyNode.node);
 
-        Node parentNode = destinyNode.node.ParentNode;
+        Node node = destinyNode.node;
 
-        while (parentNode != null)
+        while (node.ParentNode != null)
         {
-            parentNode = parentNode.ParentNode;
-            nodesPath.Add(graphView.NodeViewCollection.Where(x => x.node == parentNode).FirstOrDefault());
+            node = node.ParentNode;
+            nodesPath.Add(node);
         }
 
-        nodesPath.Add(graphView.NodeViewCollection.Where(x => x.node == parentNode).FirstOrDefault());
+        nodesPath.Add(node);
 
         lineDrawer.DrawPath(nodesPath);
     }

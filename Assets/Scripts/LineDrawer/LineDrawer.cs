@@ -56,17 +56,15 @@ public class LineDrawer : MonoBehaviour {
     /// Draw a line between all the given nodes position to mark the way.
     /// </summary>
     /// <param name="path">A list of nodes.</param>
-    public void DrawPath(List<NodeView> nodes)
+    public void DrawPath(List<Node> nodes)
     {
-        NodeView[] nodeViewCollection = graphView.NodeViewCollection;
-
         GameObject line = CreateLine();
         LineRenderer lineRenderer = line.GetComponent<LineRenderer>();
         lineRenderer.positionCount = nodes.Count;
 
         for (int i = 0; i < nodes.Count; i++)
         {
-            lineRenderer.SetPosition(i, new Vector3(nodes[i].transform.position.x, 0.5f, nodes[i].transform.position.z));
+            lineRenderer.SetPosition(i, new Vector3(nodes[i].ViewTransform.position.x, 0.5f, nodes[i].ViewTransform.transform.position.z));
         }
     }
 
