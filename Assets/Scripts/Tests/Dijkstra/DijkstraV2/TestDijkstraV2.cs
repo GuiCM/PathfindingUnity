@@ -83,7 +83,7 @@ public class TestDijkstraV2 : MonoBehaviour
     }
 
     /// <summary>
-    /// Create all the node edges.
+    /// Create all node edges.
     /// </summary>
     private void MockNodeEdges()
     {
@@ -153,6 +153,9 @@ public class TestDijkstraV2 : MonoBehaviour
 
     #region Auxiliar Methods
 
+    /// <summary>
+    /// Iterate from the destiny node using the parent nodes to reach the start node.
+    /// </summary>
     private void ShowMainPath()
     {
         List<Node> nodesPath = new List<Node>();
@@ -165,8 +168,6 @@ public class TestDijkstraV2 : MonoBehaviour
             node = node.ParentNode;
             nodesPath.Add(node);
         }
-
-        nodesPath.Add(node);
 
         lineDrawer.DrawPath(nodesPath);
     }
