@@ -17,12 +17,12 @@ public class Node
     public int DistanceFromStartNode { get; set; }
 
     /// <summary>
-    /// The node that is parent of this node.
+    /// The parent node of this node.
     /// </summary>
     public Node ParentNode { get; set; }
 
     /// <summary>
-    /// The position of the node graphic representation.
+    /// The position of the node in the graphic representation.
     /// </summary>
     public Transform ViewTransform { get; set; }
 
@@ -41,6 +41,6 @@ public class Node
         this.ViewTransform = viewTransform;
         DistanceFromStartNode = int.MaxValue;
 
-        Neighboors = new List<KeyValuePair<Node, int>>();        
+        Neighboors = new List<KeyValuePair<Node, int>>();
     }
 }

@@ -55,7 +55,8 @@ public class TestDefaultDijkstra : MonoBehaviour
 
         // Show the results
         lineDrawer.DrawPath(path);
-        ShowCostsOnDebug(costs, startNode);
+        ShowPathCost(costs, destinyNode);
+        ShowCostsToAllNodes(costs, startNode);
     }
 
     /// <summary>
@@ -63,10 +64,10 @@ public class TestDefaultDijkstra : MonoBehaviour
     /// </summary>
     /// <param name="nodeCosts">The node costs.</param>
     /// <param name="startNode">The start node.</param>
-    private void ShowCostsOnDebug(List<int> nodeCosts, int startNode)
+    private void ShowCostsToAllNodes(List<int> nodeCosts, int startNode)
     {
         startNode++;
-        string costsFormatted = "Custos(distâncias); \nNó inicial(" + startNode + ") para ele mesmo: " + nodeCosts[startNode - 1] + "\n";
+        string costsFormatted = "Custos (distâncias): \nNó (" + startNode + ") para ele mesmo: " + nodeCosts[startNode - 1] + "\n";
 
         for (int i = 0; i < nodeCosts.Count; i++)
         {
@@ -77,6 +78,16 @@ public class TestDefaultDijkstra : MonoBehaviour
         }
 
         print(costsFormatted);
+    }
+
+    /// <summary>
+    /// Show the cost (distance) from the start node to the destiny node.
+    /// </summary>
+    /// <param name="nodeCosts">The list of costs.</param>
+    /// <param name="destinyNode">The destiny node.</param>
+    private void ShowPathCost(List<int> nodeCosts, int destinyNode)
+    {
+        print("Distância a percorrer: " + nodeCosts[destinyNode]);
     }
 
     /// <summary>

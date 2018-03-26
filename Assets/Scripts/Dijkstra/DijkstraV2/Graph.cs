@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-/// <summary>
+﻿/// <summary>
 /// Handle the graph data.
 /// </summary>
 public class Graph
@@ -24,10 +20,10 @@ public class Graph
     }
 
     /// <summary>
-    /// Initializes a new array of Node and fill the basic informations.
+    /// Initializes a new array of Node and fill with the basic informations.
     /// </summary>
     /// <param name="nodeViewCollection">The collection of visual nodes from the editor.</param>
-    public void InitNodesCollectionFromView(NodeView[] nodeViewCollection)
+    public void InitializeNodesCollectionFromView(NodeView[] nodeViewCollection, bool useUnityDistances)
     {
         nodeCollection = new Node[nodeViewCollection.Length];
 
@@ -36,14 +32,24 @@ public class Graph
         {
             nodeCollection[i] = new Node(nodeViewCollection[i].nodeIndex, nodeViewCollection[i].transform);
 
-            nodeViewCollection[i].node = nodeCollection[i];            
+            nodeViewCollection[i].node = nodeCollection[i];
         }
 
         // Initializes all the nodes edges (this process needs to be done
         // after all the nodes be already initialized)
-        for (int i = 0; i < nodeViewCollection.Length; i++)
+        if (useUnityDistances)
         {
-            nodeViewCollection[i].InitializeNodeEdges();
+            for (int i = 0; i < nodeViewCollection.Length; i++)
+            {
+                nodeViewCollection[i].InitializeNodeEdgesWithUnityDistances();
+            }
+        }
+        else
+        {        
+            for (int i = 0; i < nodeViewCollection.Length; i++)
+            {
+                nodeViewCollection[i].InitializeNodeEdges();
+            }
         }
     }
 }

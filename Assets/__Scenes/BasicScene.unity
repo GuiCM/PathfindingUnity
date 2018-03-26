@@ -203,6 +203,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1040836901}
   m_Script: {fileID: 11500000, guid: e4fa34692fa6a7443a00cd0dd9130132, type: 3}
+--- !u!114 &39751700 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114274797202915336, guid: 793a3c73b0eb1764a860cfbd96fd6cd2,
+    type: 2}
+  m_PrefabInternal: {fileID: 671792512}
+  m_Script: {fileID: 11500000, guid: 6a6192f732e468e48818b199ab3f032f, type: 3}
 --- !u!4 &43623386 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4053307767470002, guid: 793a3c73b0eb1764a860cfbd96fd6cd2,
@@ -241,7 +247,7 @@ Transform:
   m_Children:
   - {fileID: 1709610756}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &86723804
 GameObject:
@@ -11376,7 +11382,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4412082991338854, guid: b71c69f006cf54642a7a3f8c6fe44031, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114568405514941718, guid: b71c69f006cf54642a7a3f8c6fe44031,
+        type: 2}
+      propertyPath: useUnityDistances
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b71c69f006cf54642a7a3f8c6fe44031, type: 2}
@@ -18608,7 +18619,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIndex: 5
-  nodesToConect: []
+  nodesToConect:
+  - neighboorNode: {fileID: 2117803545}
+    distance: 2
 --- !u!1 &446994059
 GameObject:
   m_ObjectHideFlags: 0
@@ -18945,7 +18958,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIndex: 4
-  nodesToConect: []
+  nodesToConect:
+  - neighboorNode: {fileID: 979117673}
+    distance: 5
+  - neighboorNode: {fileID: 1707606472}
+    distance: 6
+  - neighboorNode: {fileID: 816192457}
+    distance: 9
 --- !u!1 &548760397
 GameObject:
   m_ObjectHideFlags: 0
@@ -33367,7 +33386,7 @@ Prefab:
         type: 2}
       propertyPath: nodesToConect.Array.data[0]
       value: 
-      objectReference: {fileID: 1198811771}
+      objectReference: {fileID: 0}
     - target: {fileID: 114274797202915336, guid: 793a3c73b0eb1764a860cfbd96fd6cd2,
         type: 2}
       propertyPath: nodeIndex
@@ -33377,12 +33396,42 @@ Prefab:
         type: 2}
       propertyPath: nodesToConect.Array.data[1]
       value: 
-      objectReference: {fileID: 428142424}
+      objectReference: {fileID: 0}
     - target: {fileID: 114274797202915336, guid: 793a3c73b0eb1764a860cfbd96fd6cd2,
         type: 2}
       propertyPath: nodesToConect.Array.data[2]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114274797202915336, guid: 793a3c73b0eb1764a860cfbd96fd6cd2,
+        type: 2}
+      propertyPath: nodesToConect.Array.data[0].neighboorNode
+      value: 
+      objectReference: {fileID: 1198811771}
+    - target: {fileID: 114274797202915336, guid: 793a3c73b0eb1764a860cfbd96fd6cd2,
+        type: 2}
+      propertyPath: nodesToConect.Array.data[1].neighboorNode
+      value: 
+      objectReference: {fileID: 2117803545}
+    - target: {fileID: 114274797202915336, guid: 793a3c73b0eb1764a860cfbd96fd6cd2,
+        type: 2}
+      propertyPath: nodesToConect.Array.data[2].neighboorNode
+      value: 
       objectReference: {fileID: 764501230}
+    - target: {fileID: 114274797202915336, guid: 793a3c73b0eb1764a860cfbd96fd6cd2,
+        type: 2}
+      propertyPath: nodesToConect.Array.data[0].distance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114274797202915336, guid: 793a3c73b0eb1764a860cfbd96fd6cd2,
+        type: 2}
+      propertyPath: nodesToConect.Array.data[1].distance
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114274797202915336, guid: 793a3c73b0eb1764a860cfbd96fd6cd2,
+        type: 2}
+      propertyPath: nodesToConect.Array.data[2].distance
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 793a3c73b0eb1764a860cfbd96fd6cd2, type: 2}
   m_IsPrefabParent: 0
@@ -36950,7 +36999,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIndex: 11
-  nodesToConect: []
+  nodesToConect:
+  - neighboorNode: {fileID: 43623386}
+    distance: 10
+  - neighboorNode: {fileID: 1626557984}
+    distance: 3
 --- !u!1 &765499744
 GameObject:
   m_ObjectHideFlags: 0
@@ -37165,7 +37218,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIndex: 10
-  nodesToConect: []
+  nodesToConect:
+  - neighboorNode: {fileID: 530551221}
+    distance: 9
+  - neighboorNode: {fileID: 1626557984}
+    distance: 11
 --- !u!1 &842780589
 GameObject:
   m_ObjectHideFlags: 0
@@ -37680,7 +37737,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIndex: 8
-  nodesToConect: []
+  nodesToConect:
+  - neighboorNode: {fileID: 1707606472}
+    distance: 5
+  - neighboorNode: {fileID: 1290037310}
+    distance: 3
+  - neighboorNode: {fileID: 530551221}
+    distance: 5
 --- !u!1001 &1040836901
 Prefab:
   m_ObjectHideFlags: 0
@@ -37718,7 +37781,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4591773316450608, guid: aa353fc54ed1a5d4a90287e77f0e48e0, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 114377862544194828, guid: aa353fc54ed1a5d4a90287e77f0e48e0,
         type: 2}
@@ -45096,7 +45159,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4043983098351140, guid: 20e8e5ec0cecc4e42bbbb7bf8ed3d512, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -9.45
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4043983098351140, guid: 20e8e5ec0cecc4e42bbbb7bf8ed3d512, type: 2}
       propertyPath: m_LocalPosition.y
@@ -45104,7 +45167,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4043983098351140, guid: 20e8e5ec0cecc4e42bbbb7bf8ed3d512, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 14.19
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4043983098351140, guid: 20e8e5ec0cecc4e42bbbb7bf8ed3d512, type: 2}
       propertyPath: m_LocalRotation.x
@@ -45140,12 +45203,12 @@ Prefab:
         type: 2}
       propertyPath: startNode
       value: 
-      objectReference: {fileID: 1290037312}
+      objectReference: {fileID: 39751700}
     - target: {fileID: 114356080228195042, guid: 20e8e5ec0cecc4e42bbbb7bf8ed3d512,
         type: 2}
       propertyPath: destinyNode
       value: 
-      objectReference: {fileID: 1258360706}
+      objectReference: {fileID: 979117675}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 20e8e5ec0cecc4e42bbbb7bf8ed3d512, type: 2}
   m_IsPrefabParent: 0
@@ -45363,7 +45426,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIndex: 1
-  nodesToConect: []
+  nodesToConect:
+  - neighboorNode: {fileID: 43623386}
+    distance: 2
+  - neighboorNode: {fileID: 2117803545}
+    distance: 5
+  - neighboorNode: {fileID: 1626557984}
+    distance: 3
+  - neighboorNode: {fileID: 1258360704}
+    distance: 1
+  - neighboorNode: {fileID: 1707606472}
+    distance: 5
 --- !u!1 &1206424198
 GameObject:
   m_ObjectHideFlags: 0
@@ -52794,7 +52867,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIndex: 3
-  nodesToConect: []
+  nodesToConect:
+  - neighboorNode: {fileID: 1198811771}
+    distance: 1
 --- !u!1 &1269450628
 GameObject:
   m_ObjectHideFlags: 0
@@ -53015,7 +53090,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIndex: 7
-  nodesToConect: []
+  nodesToConect:
+  - neighboorNode: {fileID: 2117803545}
+    distance: 7
+  - neighboorNode: {fileID: 979117673}
+    distance: 3
 --- !u!1 &1301214048
 GameObject:
   m_ObjectHideFlags: 0
@@ -67841,7 +67920,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIndex: 9
-  nodesToConect: []
+  nodesToConect:
+  - neighboorNode: {fileID: 1198811771}
+    distance: 3
+  - neighboorNode: {fileID: 1707606472}
+    distance: 4
+  - neighboorNode: {fileID: 816192457}
+    distance: 11
+  - neighboorNode: {fileID: 764501230}
+    distance: 3
 --- !u!1 &1642026406
 GameObject:
   m_ObjectHideFlags: 0
@@ -71580,7 +71667,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIndex: 2
-  nodesToConect: []
+  nodesToConect:
+  - neighboorNode: {fileID: 1198811771}
+    distance: 5
+  - neighboorNode: {fileID: 1626557984}
+    distance: 4
+  - neighboorNode: {fileID: 979117673}
+    distance: 5
+  - neighboorNode: {fileID: 530551221}
+    distance: 6
 --- !u!4 &1709610756 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4043983098351140, guid: 20e8e5ec0cecc4e42bbbb7bf8ed3d512,
@@ -79816,7 +79911,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeIndex: 6
-  nodesToConect: []
+  nodesToConect:
+  - neighboorNode: {fileID: 43623386}
+    distance: 6
+  - neighboorNode: {fileID: 1198811771}
+    distance: 5
+  - neighboorNode: {fileID: 428142424}
+    distance: 2
+  - neighboorNode: {fileID: 1290037310}
+    distance: 7
 --- !u!1 &2135139543
 GameObject:
   m_ObjectHideFlags: 0

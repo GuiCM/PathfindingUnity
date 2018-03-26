@@ -57,9 +57,6 @@ public class TestDijkstraV2 : MonoBehaviour
 
         dijkstra = new DijkstraV2();
         graph = graphView.graph;
-
-        // FOR NOW
-        MockNodeEdges();
     }
 
     /// <summary>
@@ -73,23 +70,42 @@ public class TestDijkstraV2 : MonoBehaviour
             return;
         }
 
-        destinyNode = graphView.NodeViewCollection[7];
+        dijkstra.CalculateDijkstra(graph.Nodes, startNode.node, destinyNode.node);
 
-        // dijkstra.CalculateDijkstra(graph.Nodes, this.startNode.node, this.destinyNode.node);
-        dijkstra.CalculateDijkstra(graph.Nodes, graph.Nodes[0], graph.Nodes[7]);
-        print(graph.Nodes[7].DistanceFromStartNode);
-
+        print("Distância a percorrer: " + destinyNode.node.DistanceFromStartNode);
         ShowMainPath();
     }
+
+    #region Auxiliar Methods
+
+    /// <summary>
+    /// Iterate from the destiny node using the parent nodes to reach the start node.
+    /// </summary>
+    private void ShowMainPath()
+    {
+        List<Node> nodesPath = new List<Node>();
+        nodesPath.Add(destinyNode.node);
+
+        Node node = destinyNode.node;
+
+        while (node.ParentNode != null)
+        {
+            node = node.ParentNode;
+            nodesPath.Add(node);
+        }
+
+        lineDrawer.DrawPath(nodesPath);
+    }
+
+    #endregion Auxiliar Methods
+
+    #region Removed Methods
 
     /// <summary>
     /// Create all node edges.
     /// </summary>
     private void MockNodeEdges()
     {
-        //Order the array by the nodeIndex, filled in editor mode, to access the correct node using the array index
-        //NodeView[] nodeViewAux = graphView.NodeViewCollection.OrderBy(x => x.nodeIndex).ToArray();
-
         Node[] nodeAux = graphView.NodeViewCollection.Select(x => x.node).ToArray();
 
         // Node 1 (index 0)
@@ -151,26 +167,5 @@ public class TestDijkstraV2 : MonoBehaviour
         nodeAux[11].Neighboors.Add(new KeyValuePair<Node, int>(nodeAux[9], 3));
     }
 
-    #region Auxiliar Methods
-
-    /// <summary>
-    /// Iterate from the destiny node using the parent nodes to reach the start node.
-    /// </summary>
-    private void ShowMainPath()
-    {
-        List<Node> nodesPath = new List<Node>();
-        nodesPath.Add(destinyNode.node);
-
-        Node node = destinyNode.node;
-
-        while (node.ParentNode != null)
-        {
-            node = node.ParentNode;
-            nodesPath.Add(node);
-        }
-
-        lineDrawer.DrawPath(nodesPath);
-    }
-
-    #endregion Auxiliar Methods
+    #endregion Removed Methods
 }

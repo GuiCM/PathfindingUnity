@@ -1,6 +1,13 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class NeighboorNode
+{
+    public Transform neighboorNode;
+    public int distance;
+}
+
 /// <summary>
 /// Handle each node in the graphical representation.
 /// </summary>
@@ -20,17 +27,29 @@ public class NodeView : MonoBehaviour
     /// Represents all the conections that this node contains to the other nodes on the graph.
     /// <para>This attribute stores all the transforms that will have a conection with this node.</para>
     /// </summary>
-    public Transform[] nodesToConect;
+    public NeighboorNode[] nodesToConect;
 
     /// <summary>
-    /// Initializes all the conections that this node has (all the edges linked to this node).
+    /// Initializes all the conections that this node has with other nodes (all the edges linked to this node).
     /// </summary>
     public void InitializeNodeEdges()
     {
-        foreach (Transform neighboorNodeTransform in nodesToConect)
+        foreach (NeighboorNode neighboorNode in nodesToConect)
         {
-            NodeView neighboorNodeView = neighboorNodeTransform.transform.GetComponent<NodeView>();
-            int distance = Mathf.RoundToInt(Vector3.Distance(transform.position, neighboorNodeTransform.position));
+            NodeView neighboorNodeView = neighboorNode.neighboorNode.transform.GetComponent<NodeView>();
+
+            node.Neighboors.Add(new KeyValuePair<Node, int>(neighboorNodeView.node, neighboorNode.distance));
+        }
+    }
+
+    public void InitializeNodeEdgesWithUnityDistances()
+    {
+        foreach (NeighboorNode neighboorNode in nodesToConect)
+        {
+            NodeView neighboorNodeView = neighboorNode.neighboorNode.transform.GetComponent<NodeView>();
+
+            //Calculate the distance
+            int distance = Mathf.RoundToInt(Vector3.Distance(this.transform.position, neighboorNodeView.transform.position));
 
             node.Neighboors.Add(new KeyValuePair<Node, int>(neighboorNodeView.node, distance));
         }

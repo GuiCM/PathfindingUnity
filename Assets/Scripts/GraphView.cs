@@ -7,6 +7,12 @@ using UnityEngine;
 public class GraphView : MonoBehaviour
 {
     /// <summary>
+    /// If true, use the unity's real distance between the nodes.
+    /// </summary>
+    [SerializeField]
+    private bool useUnityDistances;
+
+    /// <summary>
     /// Represent the graph data.
     /// </summary>
     public Graph graph;
@@ -29,7 +35,7 @@ public class GraphView : MonoBehaviour
     /// </summary>
     private void InitializeNodesData()
     {
-        graph.InitNodesCollectionFromView(NodeViewCollection);
+        graph.InitializeNodesCollectionFromView(NodeViewCollection, useUnityDistances);
     }
 
     #region REMOVE
