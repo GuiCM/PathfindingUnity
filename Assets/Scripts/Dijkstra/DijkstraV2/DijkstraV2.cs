@@ -16,6 +16,9 @@ public class DijkstraV2
         Queue<Node> nodesToVisit = new Queue<Node>();
         List<Node> visitedNodes = new List<Node>();
 
+        // Before calculate the path, clear the parent references (if it is recalculating)
+        ClearParentReferences(graphNodes);
+
         // The distance from start node to itself is zero
         startNode.DistanceFromStartNode = 0;
 
@@ -43,5 +46,18 @@ public class DijkstraV2
                 }
             }
         }        
+    }
+
+    /// <summary>
+    /// Clear all the node parent references.
+    /// </summary>
+    /// <param name="graphNodes">The collection of node informations.</param>
+    private void ClearParentReferences(Node[] graphNodes)
+    {
+        foreach (Node node in graphNodes)
+        {
+            node.ParentNode = null;
+            node.DistanceFromStartNode = int.MaxValue;
+        }
     }
 }

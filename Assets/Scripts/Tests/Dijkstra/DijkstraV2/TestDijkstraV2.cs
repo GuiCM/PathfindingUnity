@@ -66,7 +66,7 @@ public class TestDijkstraV2 : MonoBehaviour
     {
         if (startNode == null || destinyNode == null)
         {
-            Debug.LogWarning("É necessário atribuir um nó de início de um nó de destino para realizar a busca!");
+            Debug.LogWarning("É necessário atribuir um nó de início e um nó de destino para realizar a busca!");
             return;
         }
 
