@@ -13,7 +13,7 @@ public class TestDijkstraV2Editor : Editor
         GUILayout.Space(10);
         if (GUILayout.Button("Calcular Dijkstra (V2)"))
         {
-            testDijkstraV2.CallTestDijkstraV2();
+            testDijkstraV2.CallDijkstraV2();
         }
     }
 }

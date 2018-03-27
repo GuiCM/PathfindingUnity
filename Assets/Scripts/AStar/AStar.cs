@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
-/// Resolve the Dijksta algorithm using Nodes and Qeue structures.
+/// Resolve the A Star algorithm using Nodes and Qeue structures.
 /// </summary>
-public class DijkstraV2
+public class AStar
 {
     /// <summary>
     /// Generate a path between two nodes using the Dijkstra algorithm.
@@ -11,7 +12,7 @@ public class DijkstraV2
     /// <param name="graphNodes">The graph containing the nodes and their relationships.</param>
     /// <param name="startNode">The start node.</param>
     /// <param name="destinyNode">The destiny node.</param>
-    public void CalculateDijkstra(Node[] graphNodes, Node startNode, Node destinyNode)
+    public void CalculateAStar(Node[] graphNodes, Node startNode, Node destinyNode)
     {
         Queue<Node> nodesToVisit = new Queue<Node>();
         List<Node> visitedNodes = new List<Node>();
@@ -42,6 +43,6 @@ public class DijkstraV2
                     nodesToVisit.Enqueue(neighboor.Key);
                 }
             }
-        }        
+        }
     }
 }

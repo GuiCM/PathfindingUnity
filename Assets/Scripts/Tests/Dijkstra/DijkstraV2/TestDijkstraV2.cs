@@ -62,7 +62,7 @@ public class TestDijkstraV2 : MonoBehaviour
     /// <summary>
     /// Resolve the dijkstra algorithm using the version 2.
     /// </summary>
-    public void CallTestDijkstraV2()
+    public void CallDijkstraV2()
     {
         if (startNode == null || destinyNode == null)
         {
