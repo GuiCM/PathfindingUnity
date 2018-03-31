@@ -32,6 +32,12 @@ public class TestDijkstraV2 : MonoBehaviour
     private NodeView destinyNode;
 
     /// <summary>
+    /// If the search must stop when reaches the destiny node.
+    /// </summary>
+    [SerializeField]
+    private bool stopOnDestiny;
+
+    /// <summary>
     /// The graph data informations
     /// </summary>
     private Graph graph;
@@ -70,9 +76,13 @@ public class TestDijkstraV2 : MonoBehaviour
             return;
         }
 
-        dijkstra.CalculateDijkstra(graph.Nodes, startNode.node, destinyNode.node);
+        dijkstra.CalculateDijkstra(graph.Nodes, startNode.node, destinyNode.node, stopOnDestiny);
 
-        print("Distância a percorrer: " + destinyNode.node.DistanceFromStartNode);
+        // Results
+        print("Distância do percurso: " + destinyNode.node.DistanceFromStartNode +
+            "\tNúmero de iterações: " + dijkstra.Iterations +
+            "\tNúmero de nós visitados: " + dijkstra.VisitedNodesQuantity);
+
         ShowMainPath();
     }
 
@@ -83,8 +93,7 @@ public class TestDijkstraV2 : MonoBehaviour
     /// </summary>
     private void ShowMainPath()
     {
-        List<Node> nodesPath = new List<Node>();
-        nodesPath.Add(destinyNode.node);
+        List<Node> nodesPath = new List<Node>() { destinyNode.node };
 
         Node node = destinyNode.node;
 

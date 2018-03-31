@@ -37,28 +37,4 @@ public class GraphView : MonoBehaviour
     {
         graph.InitializeNodesCollectionFromView(NodeViewCollection, useUnityDistances);
     }
-
-    #region REMOVE
-    /*
-    /// <summary>
-    /// Create a simple structure to be used by the Dijkstra algorithm
-    /// <para>The structure respect the rule Ex.: graph[0, 3] = 3 (Node 0 to node 3 has an edge with cost 3)</para>
-    /// </summary>
-    private void InitializeDijkstraNodes()
-    {
-        int nodeCount = NodeViewCollection.Length;
-        int[,] graphArray = new int[nodeCount, nodeCount];
-
-        for (int i = 0; i < nodeCount; i++)
-        {
-            List<KeyValuePair<int, int>> currentNodeNeighboors = (List<KeyValuePair<int, int>>)graph.nodeCollection[i].Neighboors;
-            for (int j = 0; j < currentNodeNeighboors.Count; j++)
-            {
-                graphArray[i, currentNodeNeighboors[j].Key] = currentNodeNeighboors[j].Value; // Ex.: graph[0, 3] = 4
-                graphArray[currentNodeNeighboors[j].Key, i] = currentNodeNeighboors[j].Value; // Ex.: graph[3, 0] = 4
-            }
-        }
-    }*/
-
-    #endregion REMOVE
 }

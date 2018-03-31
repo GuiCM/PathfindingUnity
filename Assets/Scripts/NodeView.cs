@@ -49,7 +49,7 @@ public class NodeView : MonoBehaviour
             NodeView neighboorNodeView = neighboorNode.neighboorNode.transform.GetComponent<NodeView>();
 
             //Calculate the distance
-            int distance = Mathf.RoundToInt(Vector3.Distance(this.transform.position, neighboorNodeView.transform.position));
+            int distance = Mathf.FloorToInt(Vector3.Distance(this.transform.position, neighboorNodeView.transform.position));
 
             node.Neighboors.Add(new KeyValuePair<Node, int>(neighboorNodeView.node, distance));
         }
