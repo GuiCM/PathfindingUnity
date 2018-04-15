@@ -22,12 +22,12 @@ public class NodesUI : MonoBehaviour
         foreach (NodeView nodeView in graphView.NodeViewCollection)
         {
             Vector3 pos = Camera.main.WorldToScreenPoint(nodeView.transform.position);
-            pos.y += 20;
+            pos.y += 25;
 
             GameObject textObject = Instantiate(textPrefab, canvas.transform);
             Text textComponent = textObject.GetComponent<Text>();
 
-            textComponent.text = nodeView.nodeIndex.ToString();
+            textComponent.text = nodeView.name;
             textComponent.rectTransform.position = pos;
         }
     }

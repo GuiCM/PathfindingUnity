@@ -64,7 +64,7 @@ public class LineDrawer : MonoBehaviour {
 
         for (int i = 0; i < nodes.Count; i++)
         {
-            lineRenderer.SetPosition(i, new Vector3(nodes[i].ViewTransform.position.x, 0.5f, nodes[i].ViewTransform.transform.position.z));
+            lineRenderer.SetPosition(i, new Vector3(nodes[i].ViewTransform.position.x, nodes[i].ViewTransform.position.y, nodes[i].ViewTransform.transform.position.z));
         }
     }
 
