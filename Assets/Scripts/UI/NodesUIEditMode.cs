@@ -14,6 +14,8 @@ public class NodesUIEditMode : MonoBehaviour
     {
         NodeView[] nodeViewCollection = GameObject.FindObjectsOfType<NodeView>();
 
+        int edgesCount = 0;
+
         foreach (NodeView nodeView in nodeViewCollection)
         {
             Vector3 pos = Camera.main.WorldToScreenPoint(nodeView.transform.position);
@@ -24,6 +26,10 @@ public class NodesUIEditMode : MonoBehaviour
 
             textComponent.text = nodeView.name;
             textComponent.rectTransform.position = pos;
+
+            edgesCount += nodeView.nodesToConect.Length;
         }
+
+        print("Número de nós: " + nodeViewCollection.Length + "\t\tNúmero de arestas: " + edgesCount);
     }
 }

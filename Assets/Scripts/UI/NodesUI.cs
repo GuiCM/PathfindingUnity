@@ -19,6 +19,8 @@ public class NodesUI : MonoBehaviour
 
     private void DrawNodesIndex()
     {
+        int edgesCount = 0;
+
         foreach (NodeView nodeView in graphView.NodeViewCollection)
         {
             Vector3 pos = Camera.main.WorldToScreenPoint(nodeView.transform.position);
@@ -29,6 +31,10 @@ public class NodesUI : MonoBehaviour
 
             textComponent.text = nodeView.name;
             textComponent.rectTransform.position = pos;
+
+            edgesCount += nodeView.nodesToConect.Length;
         }
+
+        print("Número de nós: " + graphView.NodeViewCollection.Length + "\t\tNúmero de arestas: " + edgesCount);
     }
 }
