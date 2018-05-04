@@ -54,7 +54,7 @@ public class TestDefaultDijkstra : MonoBehaviour
         }
 
         // Show the results
-        lineDrawer.DrawPath(path);
+        // lineDrawer.DrawPath(path);
         ShowPathCost(costs, destinyNode);
         ShowCostsToAllNodes(costs, startNode);
     }

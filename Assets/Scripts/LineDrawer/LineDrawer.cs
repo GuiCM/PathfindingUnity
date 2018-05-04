@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -23,33 +22,6 @@ public class LineDrawer : MonoBehaviour {
     {
         if (graphView == null)
             Debug.LogWarning("GraphView object not attached to the LineDrawer!");
-    }
-
-    /// <summary>
-    /// Draw a line between all the given nodes position to mark the way.
-    /// </summary>
-    /// <param name="path">A list of the nodes index.</param>
-    public void DrawPath(List<int> path)
-    {        
-        NodeView[] nodeViewCollection = graphView.NodeViewCollection;
-
-        GameObject line = CreateLine();
-        LineRenderer lineRenderer = line.GetComponent<LineRenderer>();
-        lineRenderer.positionCount = path.Count;
-
-        for (int i = 0; i < path.Count; i++)
-        {
-            // Find the node to get the position
-            for (int j = 0; j < nodeViewCollection.Length; j++)
-            {
-                if (nodeViewCollection[j].nodeIndex.Equals(path[i]))
-                {
-                    NodeView node = nodeViewCollection[j];
-                    lineRenderer.SetPosition(i, new Vector3(node.transform.position.x, 0.5f, node.transform.position.z));
-                    break;
-                }
-            }
-        }
     }
 
     /// <summary>
@@ -81,3 +53,37 @@ public class LineDrawer : MonoBehaviour {
         return Instantiate(linePrefab, new Vector3(0, 0, 0), Quaternion.identity);
     }
 }
+
+
+#region Removed Methods
+
+/*
+     /// <summary>
+    /// Draw a line between all the given nodes position to mark the way.
+    /// </summary>
+    /// <param name="path">A list of the nodes index.</param>
+    public void DrawPath(List<int> path)
+    {        
+        NodeView[] nodeViewCollection = graphView.NodeViewCollection;
+
+        GameObject line = CreateLine();
+        LineRenderer lineRenderer = line.GetComponent<LineRenderer>();
+        lineRenderer.positionCount = path.Count;
+
+        for (int i = 0; i < path.Count; i++)
+        {
+            // Find the node to get the position
+            for (int j = 0; j < nodeViewCollection.Length; j++)
+            {
+                if (nodeViewCollection[j].nodeIndex.Equals(path[i]))
+                {
+                    NodeView node = nodeViewCollection[j];
+                    lineRenderer.SetPosition(i, new Vector3(node.transform.position.x, 0.5f, node.transform.position.z));
+                    break;
+                }
+            }
+        }
+    }
+*/
+
+#endregion Removed Methods

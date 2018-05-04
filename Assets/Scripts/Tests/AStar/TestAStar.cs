@@ -63,15 +63,19 @@ public class TestAStar : MonoBehaviour
             return;
         }               
 
-        aStar.CalculateAStar(graph.Nodes, startNode.node, destinyNode.node);
+        aStar.ResolveAStar(graph.Nodes, startNode.node, destinyNode.node);
 
-        //Results
-        print("Distância do percurso: " + destinyNode.node.DistanceFromStartNode +
-           "\tNúmero de iterações: " + aStar.Iterations +
-           "\tNúmero de nós visitados: " + aStar.VisitedNodesQuantity);
+        // Results
+        string report = "Distância do percurso: " + destinyNode.node.DistanceFromStartNode +
+            "\tNúmero de iterações: " + aStar.Iterations +
+            "\tNúmero de nós visitados: " + aStar.VisitedNodesQuantity +
+            "\tTempo total de execução (ms): " + aStar.TimeToFinishTheSearch;
+        print(report);
 
         ShowMainPath();
     }
+
+    #region Auxiliar Methods
 
     /// <summary>
     /// Iterate from the destiny node using the parent nodes to reach the start node.
@@ -90,4 +94,6 @@ public class TestAStar : MonoBehaviour
 
         lineDrawer.DrawPath(nodesPath);
     }
+
+    #endregion Auxiliar Methods
 }

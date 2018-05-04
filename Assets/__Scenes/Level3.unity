@@ -9725,6 +9725,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1207582285742266, guid: 20e8e5ec0cecc4e42bbbb7bf8ed3d512, type: 2}
+      propertyPath: m_Name
+      value: TestDijkstra
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 20e8e5ec0cecc4e42bbbb7bf8ed3d512, type: 2}
   m_IsPrefabParent: 0

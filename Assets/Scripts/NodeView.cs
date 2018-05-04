@@ -14,11 +14,6 @@ public class NeighboorNode
 public class NodeView : MonoBehaviour
 {
     /// <summary>
-    /// Represents the "name" of the node.
-    /// </summary>
-    public int nodeIndex;
-
-    /// <summary>
     /// A reference for the correspondent node data (DijkstraV2 only).
     /// </summary>
     public Node node;

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 /// <summary>
@@ -6,44 +7,45 @@ using UnityEngine;
 /// </summary>
 public class AStar
 {
-    public int Iterations { get; set; }
+    public int Iterations { get; private set; }
 
-    public int VisitedNodesQuantity { get; set; }
+    public int VisitedNodesQuantity { get; private set; }
+
+    public double TimeToFinishTheSearch { get; private set; }
 
     /// <summary>
-    /// Generate a path between two nodes using the Dijkstra algorithm.
+    /// Generate a path between two nodes using the A* algorithm.
     /// </summary>
     /// <param name="graphNodes">The graph containing the nodes and their relationships.</param>
     /// <param name="startNode">The start node.</param>
     /// <param name="destinyNode">The destiny node.</param>
-    public void CalculateAStar(Node[] graphNodes, Node startNode, Node destinyNode)
+    public void ResolveAStar(Node[] graphNodes, Node startNode, Node destinyNode)
     {
-        #region SETUP
-
         List<Node> nodesToVisit = new List<Node>();
         List<Node> visitedNodes = new List<Node>();
 
-        // Before calculate the path, clear the parent references (if it is recalculating)
-        ClearParentReferences(graphNodes);
+        ResetInformations(graphNodes);
 
-        #endregion SETUP
+        Stopwatch stopwatch = Stopwatch.StartNew();
 
-        // The distance from start node to itself is zero
         startNode.DistanceFromStartNode = 0;
-
-        // Add all the nodes to be analyzed
+        
         nodesToVisit.Add(startNode);
 
         while (nodesToVisit.Count > 0)
         {
-            Node currentNode = GetNodeToAnalyze(nodesToVisit, destinyNode);            
+            Node currentNode = GetNodeToAnalyze(nodesToVisit, destinyNode);
 
             // If reached the destiny node, the search is done
             if (currentNode == destinyNode)
+            {
+                stopwatch.Stop();
+                TimeToFinishTheSearch = stopwatch.Elapsed.TotalMilliseconds;
                 return;
+            }
 
             visitedNodes.Add(currentNode);
-            nodesToVisit.Remove(currentNode);            
+            nodesToVisit.Remove(currentNode);
 
             VisitedNodesQuantity++;
 
@@ -66,7 +68,7 @@ public class AStar
                     neighboor.Key.ParentNode = currentNode;
                 }
 
-                Iterations++;                
+                Iterations++;
             }
         }
     }
@@ -90,31 +92,31 @@ public class AStar
     /// <returns>The next node to be be analyzed.</returns>
     private Node GetNodeToAnalyze(List<Node> nodesToVisit, Node destinyNode)
     {
-        Node nextNode = nodesToVisit[0];
+        Node nodeToAnalyze = nodesToVisit[0];
 
         // (F = G + H) of the current selected node
-        int fScoreCurrentSelectedNode = nextNode.DistanceFromStartNode + CalculateHeuristic(nextNode, destinyNode);
+        int fScoreCurrentNode = nodeToAnalyze.DistanceFromStartNode + CalculateHeuristic(nodeToAnalyze, destinyNode);
 
         for (int i = 1; i < nodesToVisit.Count; i++)
-        {            
+        {
             // (F = G + H) of the node collection
             int fScoreNode = nodesToVisit[i].DistanceFromStartNode + CalculateHeuristic(nodesToVisit[i], destinyNode);
 
-            if (fScoreNode < fScoreCurrentSelectedNode)
+            if (fScoreNode < fScoreCurrentNode)
             {
-                nextNode = nodesToVisit[i];
-                fScoreCurrentSelectedNode = fScoreNode;
+                nodeToAnalyze = nodesToVisit[i];
+                fScoreCurrentNode = fScoreNode;
             }
         }
 
-        return nextNode;
+        return nodeToAnalyze;
     }
 
     /// <summary>
     /// Clear all the node parent references.
     /// </summary>
     /// <param name="graphNodes">The collection of node informations.</param>
-    private void ClearParentReferences(Node[] graphNodes)
+    private void ResetInformations(Node[] graphNodes)
     {
         foreach (Node node in graphNodes)
         {
@@ -124,5 +126,6 @@ public class AStar
 
         Iterations = 0;
         VisitedNodesQuantity = 0;
+        TimeToFinishTheSearch = 0f;
     }
 }

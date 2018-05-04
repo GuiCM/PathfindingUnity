@@ -27,17 +27,11 @@ public class Node
     public Transform ViewTransform { get; set; }
 
     /// <summary>
-    /// The index of the node (It must be unique to each node).
-    /// </summary>
-    public int Index { get; set; }
-
-    /// <summary>
     /// Initializes a new instance of <see cref="Node"/> class that represents a graph node data informations.
     /// </summary>
-    /// <param name="index">The node index (Got from editor mode).</param>
-    public Node(int index, Transform viewTransform)
+    /// <param name="viewTransform">The transform of this node in the graphical representation</param>
+    public Node(Transform viewTransform)
     {
-        this.Index = index;
         this.ViewTransform = viewTransform;
         DistanceFromStartNode = int.MaxValue;
 

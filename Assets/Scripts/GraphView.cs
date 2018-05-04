@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// Handle the nodes collection in the graphical representation
@@ -26,11 +25,6 @@ public class GraphView : MonoBehaviour
     {
         graph = new Graph();
         NodeViewCollection = GameObject.FindObjectsOfType<NodeView>();
-
-        /*for (int i = 0; i < NodeViewCollection.Length; i++)
-        {
-            NodeViewCollection[i].nodeIndex = i;
-        }*/
 
         InitializeNodesData();
     }

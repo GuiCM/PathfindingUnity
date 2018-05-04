@@ -30,13 +30,13 @@ public class Graph
         // Initializes all the nodes
         for (int i = 0; i < nodeViewCollection.Length; i++)
         {
-            nodeCollection[i] = new Node(nodeViewCollection[i].nodeIndex, nodeViewCollection[i].transform);
+            nodeCollection[i] = new Node(nodeViewCollection[i].transform);
 
             nodeViewCollection[i].node = nodeCollection[i];
         }
 
-        // Initializes all the nodes edges (this process needs to be done
-        // after all the nodes be already initialized)
+        // Initializes all the nodes edges (this process needs to be done after all the nodes be 
+        // already initialized)
         if (useUnityDistances)
         {
             for (int i = 0; i < nodeViewCollection.Length; i++)
