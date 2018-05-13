@@ -10,7 +10,9 @@ public class Dijkstra
 
     public int VisitedNodesQuantity { get; private set; }
 
-    public double TimeToFinishTheSearch { get; private set; }
+    public double TimeToFinishTheSearchMs { get; private set; }
+
+    public double TimeToFinishTheSearchS { get; private set; }
 
     /// <summary>
     /// Generate a path between two nodes using the Dijkstra algorithm.
@@ -56,7 +58,8 @@ public class Dijkstra
         }
 
         stopwatch.Stop();
-        TimeToFinishTheSearch = stopwatch.Elapsed.TotalMilliseconds;
+        TimeToFinishTheSearchMs = stopwatch.Elapsed.TotalMilliseconds;
+        TimeToFinishTheSearchS = stopwatch.Elapsed.TotalSeconds;
     }
 
     /// <summary>
@@ -92,7 +95,7 @@ public class Dijkstra
 
         Iterations = 0;
         VisitedNodesQuantity = 0;
-        TimeToFinishTheSearch = 0f;
+        TimeToFinishTheSearchMs = 0f;
     }
 }
 

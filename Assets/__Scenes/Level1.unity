@@ -3126,6 +3126,12 @@ Transform:
   m_Father: {fileID: 2106215680}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &908039868 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114274797202915336, guid: 793a3c73b0eb1764a860cfbd96fd6cd2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1998169647}
+  m_Script: {fileID: 11500000, guid: 6a6192f732e468e48818b199ab3f032f, type: 3}
 --- !u!1 &962319891
 GameObject:
   m_ObjectHideFlags: 0
@@ -4142,9 +4148,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   graphView: {fileID: 254446060}
   lineDrawer: {fileID: 1647788273}
-  startNode: {fileID: 2118406883}
-  destinyNode: {fileID: 207442328}
-  stopOnDestiny: 0
+  startNode: {fileID: 908039868}
+  destinyNode: {fileID: 1800412982}
+  notExecuteDijkstra: 0
 --- !u!1 &1465911555
 GameObject:
   m_ObjectHideFlags: 0
@@ -5173,6 +5179,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4053307767470002, guid: 793a3c73b0eb1764a860cfbd96fd6cd2,
     type: 2}
   m_PrefabInternal: {fileID: 1797521924}
+--- !u!114 &1800412982 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114274797202915336, guid: 793a3c73b0eb1764a860cfbd96fd6cd2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1558298076}
+  m_Script: {fileID: 11500000, guid: 6a6192f732e468e48818b199ab3f032f, type: 3}
 --- !u!1001 &1827223859
 Prefab:
   m_ObjectHideFlags: 0

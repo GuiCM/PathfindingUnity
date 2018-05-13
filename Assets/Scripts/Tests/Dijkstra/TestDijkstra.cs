@@ -19,6 +19,11 @@ public class TestDijkstra : MonoBehaviour
 
     private Dijkstra dijkstra;
 
+    private bool dijkstraDiagnostic = false;
+    private float timeToRecord = 10f;
+    private float timeRecording = 0f;
+    private int fpsCount = 0;
+
     private void Start()
     {
         if (graphView == null)
@@ -51,10 +56,48 @@ public class TestDijkstra : MonoBehaviour
         string report = "Distância do percurso: " + destinyNode.node.DistanceFromStartNode +
             "\tNúmero de iterações: " + dijkstra.Iterations +
             "\tNúmero de nós visitados: " + dijkstra.VisitedNodesQuantity +
-            "\tTempo total de execução (ms): " + dijkstra.TimeToFinishTheSearch;
+            "\tTempo total de execução (ms): " + dijkstra.TimeToFinishTheSearchMs +
+            "\tTempo total de execução (s): " + dijkstra.TimeToFinishTheSearchS;
         print(report);
 
         ShowMainPath();
+
+        dijkstraDiagnostic = true;
+    }
+
+    public void Update()
+    {
+        if (dijkstraDiagnostic)
+        {
+            timeRecording += Time.deltaTime;
+
+            if (timeRecording >= timeToRecord)
+            {
+                dijkstraDiagnostic = false;
+                print("PARA TUDOOO! " + timeRecording);
+                print("FPS: " + fpsCount);
+
+                timeRecording = 0f;
+                fpsCount = 0;
+
+                return;
+            }
+
+            /*Profiler.BeginSample("Dijkstra Sample");
+
+            dijkstra.ResolveDijkstra(graph.Nodes, startNode.node, destinyNode.node);
+
+            string report = "Distância do percurso: " + destinyNode.node.DistanceFromStartNode +
+                "\tNúmero de iterações: " + dijkstra.Iterations +
+                "\tNúmero de nós visitados: " + dijkstra.VisitedNodesQuantity +
+                "\tTempo total de execução (ms): " + dijkstra.TimeToFinishTheSearchMs +
+                "\tTempo total de execução (s): " + dijkstra.TimeToFinishTheSearchS;
+            print(report);
+
+            Profiler.EndSample();*/
+
+            fpsCount++;
+        }
     }
 
     #region Auxiliar Methods

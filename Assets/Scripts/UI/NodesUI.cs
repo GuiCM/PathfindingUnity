@@ -24,7 +24,7 @@ public class NodesUI : MonoBehaviour
         foreach (NodeView nodeView in graphView.NodeViewCollection)
         {
             Vector3 pos = Camera.main.WorldToScreenPoint(nodeView.transform.position);
-            pos.y += 25;
+            pos.y += 20;
 
             GameObject textObject = Instantiate(textPrefab, canvas.transform);
             Text textComponent = textObject.GetComponent<Text>();
