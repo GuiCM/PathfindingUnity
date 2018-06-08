@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
 /// Handle the nodes collection in the graphical representation
 /// </summary>
 public class GraphView : MonoBehaviour
-{
+{    
     /// <summary>
     /// If true, use the unity's real distance between the nodes.
     /// </summary>
@@ -20,6 +21,16 @@ public class GraphView : MonoBehaviour
     /// The visual nodes present in the scene.
     /// </summary>
     public NodeView[] NodeViewCollection { get; set; }
+
+    /// <summary>
+    /// A list of int to hold the start node indexes that the algorithms will calculate
+    /// </summary>
+    public List<int> startNodesIndex;
+
+    /// <summary>
+    /// A list of int to hold the destiny node indexes that the algorithms will calculate
+    /// </summary>
+    public List<int> destinyNodesIndex;
 
     void Awake()
     {

@@ -12,6 +12,9 @@ public class NodesUI : MonoBehaviour
     [SerializeField]
     private GameObject textPrefab;
 
+    [SerializeField]
+    private GameObject textParent;
+
     private void Start()
     {
         DrawNodesIndex();
@@ -26,7 +29,7 @@ public class NodesUI : MonoBehaviour
             Vector3 pos = Camera.main.WorldToScreenPoint(nodeView.transform.position);
             pos.y += 20;
 
-            GameObject textObject = Instantiate(textPrefab, canvas.transform);
+            GameObject textObject = Instantiate(textPrefab, textParent.transform);
             Text textComponent = textObject.GetComponent<Text>();
 
             textComponent.text = nodeView.name;

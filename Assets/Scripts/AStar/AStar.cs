@@ -7,10 +7,19 @@ using UnityEngine;
 /// </summary>
 public class AStar
 {
+    /// <summary>
+    /// Store the total iterations count
+    /// </summary>
     public int Iterations { get; private set; }
 
+    /// <summary>
+    /// Store the total visited nodes count
+    /// </summary>
     public int VisitedNodesQuantity { get; private set; }
 
+    /// <summary>
+    /// Store the time elapsed to finish a single search
+    /// </summary>
     public double TimeToFinishTheSearch { get; private set; }
 
     /// <summary>

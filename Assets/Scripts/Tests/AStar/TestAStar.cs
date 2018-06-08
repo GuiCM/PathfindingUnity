@@ -4,28 +4,29 @@ using UnityEngine;
 public class TestAStar : MonoBehaviour
 {
     /// <summary>
-    /// The graph in the graphical representation (scene).
+    /// An instance of <see cref="GraphView"/> class.
     /// </summary>
-    [SerializeField]
-    private GraphView graphView;
+    public GraphView graphView;
 
     /// <summary>
     /// The class used to draw the lines on the scene to show the path.
     /// </summary>
-    [SerializeField]
-    private LineDrawer lineDrawer;
+    public LineDrawer lineDrawer;
 
     /// <summary>
     /// The node marked as the start.
     /// </summary>
-    [SerializeField]
-    private NodeView startNode;
+    public NodeView startNode;
 
     /// <summary>
     /// The node marked as the destiny.
     /// </summary>
-    [SerializeField]
-    private NodeView destinyNode;
+    public NodeView destinyNode;
+
+    /// <summary>
+    /// Flag to control the execution
+    /// </summary>
+    public bool execute;
 
     /// <summary>
     /// The graph data informations
@@ -33,7 +34,7 @@ public class TestAStar : MonoBehaviour
     private Graph graph;
 
     /// <summary>
-    /// The dijkstra v2 implementation
+    /// The A star implementation
     /// </summary>
     private AStar aStar;
 
@@ -55,24 +56,33 @@ public class TestAStar : MonoBehaviour
         graph = graphView.graph;
     }
 
+    /// <summary>
+    /// Call the A star implementation to resolve the path between two nodes
+    /// </summary>
     public void CallTestAStar()
     {
         if (startNode == null || destinyNode == null)
         {
             Debug.LogWarning("É necessário atribuir um nó de início e um nó de destino para realizar a busca!");
             return;
-        }               
+        }
 
         aStar.ResolveAStar(graph.Nodes, startNode.node, destinyNode.node);
 
-        // Results
-        string report = "Distância do percurso: " + destinyNode.node.DistanceFromStartNode +
-            "\tNúmero de iterações: " + aStar.Iterations +
-            "\tNúmero de nós visitados: " + aStar.VisitedNodesQuantity +
-            "\tTempo total de execução (ms): " + aStar.TimeToFinishTheSearch;
+        // Show results
+        string report = string.Format("Distância do percurso: {0}\tNúmero de iterações: {1}\tNúmero de nós visitados: {2}\tTempo total de execução (ms): {3}",
+            destinyNode.node.DistanceFromStartNode, aStar.Iterations, aStar.VisitedNodesQuantity, aStar.TimeToFinishTheSearch);
         print(report);
 
         ShowMainPath();
+    }
+
+    private void Update()
+    {
+        if (execute)
+        {
+            aStar.ResolveAStar(graph.Nodes, startNode.node, destinyNode.node);
+        }
     }
 
     #region Auxiliar Methods
@@ -82,7 +92,7 @@ public class TestAStar : MonoBehaviour
     /// </summary>
     private void ShowMainPath()
     {
-        List<Node> nodesPath = new List<Node>() { destinyNode.node };        
+        List<Node> nodesPath = new List<Node>() { destinyNode.node };
 
         Node node = destinyNode.node;
 

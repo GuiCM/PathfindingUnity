@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Holds the neighboors nodes from a node
+/// </summary>
 [System.Serializable]
 public class NeighboorNode
 {

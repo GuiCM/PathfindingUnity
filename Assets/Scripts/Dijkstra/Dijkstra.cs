@@ -6,13 +6,20 @@ using System.Diagnostics;
 /// </summary>
 public class Dijkstra
 {
+    /// <summary>
+    /// Store the total iterations count
+    /// </summary>
     public int Iterations { get; private set; }
 
+    /// <summary>
+    /// Store the total visited nodes count
+    /// </summary>
     public int VisitedNodesQuantity { get; private set; }
 
-    public double TimeToFinishTheSearchMs { get; private set; }
-
-    public double TimeToFinishTheSearchS { get; private set; }
+    /// <summary>
+    /// Store the time elapsed to finish a single search
+    /// </summary>
+    public double TimeToFinishTheSearch { get; private set; }
 
     /// <summary>
     /// Generate a path between two nodes using the Dijkstra algorithm.
@@ -58,8 +65,7 @@ public class Dijkstra
         }
 
         stopwatch.Stop();
-        TimeToFinishTheSearchMs = stopwatch.Elapsed.TotalMilliseconds;
-        TimeToFinishTheSearchS = stopwatch.Elapsed.TotalSeconds;
+        TimeToFinishTheSearch = stopwatch.Elapsed.TotalMilliseconds;
     }
 
     /// <summary>
@@ -95,56 +101,6 @@ public class Dijkstra
 
         Iterations = 0;
         VisitedNodesQuantity = 0;
-        TimeToFinishTheSearchMs = 0f;
+        TimeToFinishTheSearch = 0f;
     }
 }
-
-
-#region Dijkstra with Queue
-
-/*
-/// <summary>
-/// Generate a path between two nodes using the Dijkstra algorithm.
-/// </summary>
-/// <param name="graphNodes">The graph containing the nodes and their relationships.</param>
-/// <param name="startNode">The start node.</param>
-/// <param name="destinyNode">The destiny node.</param>
-public void CalculateDijkstraQueue(Node[] graphNodes, Node startNode, Node destinyNode)
-{
-    Queue<Node> nodesToVisit = new Queue<Node>();
-    List<Node> visitedNodes = new List<Node>();
-
-    // Before calculate the path, clear the parent references (if it is recalculating)
-    ClearParentReferences(graphNodes);
-
-    // The distance from start node to itself is zero
-    startNode.DistanceFromStartNode = 0;
-
-    // Put the start node on the queue to analyze
-    nodesToVisit.Enqueue(startNode);
-
-    while (nodesToVisit.Count > 0)
-    {
-        Node currentNode = nodesToVisit.Dequeue();
-        visitedNodes.Add(currentNode);
-
-        // Calculate the edges for the current node
-        foreach (KeyValuePair<Node, int> neighboor in currentNode.Neighboors)
-        {
-            if ((currentNode.DistanceFromStartNode + neighboor.Value) < neighboor.Key.DistanceFromStartNode)
-            {
-                neighboor.Key.DistanceFromStartNode = currentNode.DistanceFromStartNode + neighboor.Value;
-                neighboor.Key.ParentNode = currentNode;
-            }
-
-            // Add the neighboors to the queue to be analysed after
-            if (!visitedNodes.Contains(neighboor.Key) && !nodesToVisit.Contains(neighboor.Key))
-            {
-                nodesToVisit.Enqueue(neighboor.Key);
-            }
-        }
-    }        
-}
-*/
-
-#endregion Dijkstra with Queue
