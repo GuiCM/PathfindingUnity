@@ -9,12 +9,6 @@ using UnityEngine.UI;
 public class FrameCapture : MonoBehaviour
 {
     /// <summary>
-    /// The reference to the ui controller
-    /// </summary>
-    [SerializeField]
-    private UIStatus uIStatus;
-
-    /// <summary>
     /// Flag to determine if is to capture the frames or not
     /// </summary>
     public bool capture;
@@ -87,7 +81,7 @@ public class FrameCapture : MonoBehaviour
             {
                 capture = false;
                 ShowResult();
-                uIStatus.SetComponentsStatus(true);
+                UIStatus.Get.SetComponentsStatus(true);
 
                 frameCount = 0;
                 timeCapturing = 0f;
@@ -112,7 +106,7 @@ public class FrameCapture : MonoBehaviour
         fpsAverage = fpsCollection.Sum(x => x) / frameCount;
 
         string capture = algorithm != null ? string.Format("Captura do algoritmo {0} finalizada!", algorithm) : "Captura sem algoritmo finalizada!";
-        fpsText.text = capture + string.Format("\nTempo capturado: {0} segundos\nMédia de frames: {1}\nNúmero de agentes: {2}", timeCapturing.ToString("f2"),fpsAverage.ToString("f2"), AgentUtility.agentCount);
+        fpsText.text = capture + string.Format("\nTempo capturado: {0} seg.\nMédia de frames: {1}\nNúmero de agentes: {2}", timeCapturing.ToString("f2"), fpsAverage.ToString("f2"), AgentUtility.agentCount);
     }
 
     /// <summary>
@@ -122,6 +116,7 @@ public class FrameCapture : MonoBehaviour
     {
         algorithm = null;
         fpsText.text = "Capturando média de frames...";
+
         capture = true;
     }
 
@@ -143,5 +138,7 @@ public class FrameCapture : MonoBehaviour
     public void SetTime()
     {
         timeToCapture = string.IsNullOrEmpty(inputTime.text) ? 3f : float.Parse(inputTime.text);
+
+        inputTime.text = string.Empty;
     }
 }

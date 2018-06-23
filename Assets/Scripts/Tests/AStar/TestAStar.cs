@@ -1,8 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TestAStar : MonoBehaviour
 {
+    public delegate void ExecuteMode();
+
+    public ExecuteMode executeMode;
+
     /// <summary>
     /// An instance of <see cref="GraphView"/> class.
     /// </summary>
@@ -61,18 +66,25 @@ public class TestAStar : MonoBehaviour
     /// </summary>
     public void CallTestAStar()
     {
+        GeneralUtility.Get.ClearLineRenderers();
+
+        startNode = graphView.NodeViewCollection.Where(x => x.name == UIStatus.Get.inptAStarStartNode.text).FirstOrDefault();
+        destinyNode = graphView.NodeViewCollection.Where(x => x.name == UIStatus.Get.inptAStarDestinyNode.text).FirstOrDefault();
+
         if (startNode == null || destinyNode == null)
         {
-            Debug.LogWarning("É necessário atribuir um nó de início e um nó de destino para realizar a busca!");
+            UIStatus.Get.SetComponentText(UIStatus.Get.lblResults, "O nó de início ou de destino não foi encontrado no conjunto de nós do cenário!");
             return;
         }
 
         aStar.ResolveAStar(graph.Nodes, startNode.node, destinyNode.node);
 
         // Show results
-        string report = string.Format("Distância do percurso: {0}\tNúmero de iterações: {1}\tNúmero de nós visitados: {2}\tTempo total de execução (ms): {3}",
-            destinyNode.node.DistanceFromStartNode, aStar.Iterations, aStar.VisitedNodesQuantity, aStar.TimeToFinishTheSearch);
-        print(report);
+        UIStatus.Get.SetComponentText(
+            UIStatus.Get.lblResults,
+            string.Format("A* resultados: \nDistância do caminho: {0} un.\nNúmero de iterações: {1}\nNúmero de nós visitados: {2}\nTempo total de execução (ms): {3}",
+            destinyNode.node.DistanceFromStartNode, aStar.Iterations, aStar.VisitedNodesQuantity, aStar.TimeToFinishTheSearch)
+        );
 
         ShowMainPath();
     }
@@ -81,11 +93,29 @@ public class TestAStar : MonoBehaviour
     {
         if (execute)
         {
-            aStar.ResolveAStar(graph.Nodes, startNode.node, destinyNode.node);
+            executeMode();
         }
     }
 
     #region Auxiliar Methods
+
+    /// <summary>
+    /// Call resolve A Star without showing the generated paths
+    /// </summary>
+    public void ExecuteWithoutShowLines()
+    {        
+        aStar.ResolveAStar(graph.Nodes, startNode.node, destinyNode.node);
+    }
+
+    /// <summary>
+    /// Call resolve A Star showing the generated paths
+    /// </summary>
+    public void ExecuteShowingLines()
+    {
+        aStar.ResolveAStar(graph.Nodes, startNode.node, destinyNode.node);
+
+        ShowMainPath();
+    }
 
     /// <summary>
     /// Iterate from the destiny node using the parent nodes to reach the start node.

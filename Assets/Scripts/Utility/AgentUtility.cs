@@ -71,5 +71,7 @@ public class AgentUtility : MonoBehaviour
 
         dijkstraPlacer.CreateAgents();
         aStarPlacer.CreateAgents();
+
+        inputAgentsNumber.text = string.Empty;
     }
 }

@@ -1,8 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TestDijkstra : MonoBehaviour
 {
+    public delegate void ExecuteMode();
+
+    public ExecuteMode executeMode;
+
     /// <summary>
     /// An instance of <see cref="GraphView"/> class.
     /// </summary>
@@ -61,19 +66,26 @@ public class TestDijkstra : MonoBehaviour
     /// </summary>
     public void CallDijkstra()
     {
+        GeneralUtility.Get.ClearLineRenderers();
+
+        startNode = graphView.NodeViewCollection.FirstOrDefault(x => x.name == UIStatus.Get.inptDijkstraStartNode.text);
+        destinyNode = graphView.NodeViewCollection.FirstOrDefault(x => x.name == UIStatus.Get.inptDijkstraDestinyNode.text);
+
         if (startNode == null || destinyNode == null)
         {
-            Debug.LogWarning("É necessário atribuir um nó de início e um nó de destino para realizar a busca!");
+            UIStatus.Get.SetComponentText(UIStatus.Get.lblResults, "O nó de início ou de destino não foi encontrado no conjunto de nós do cenário!");
             return;
         }
 
         dijkstra.ResolveDijkstra(graph.Nodes, startNode.node, destinyNode.node);
 
         // Show results
-        string report = string.Format("Distância do percurso: {0}\tNúmero de iterações: {1}\tNúmero de nós visitados: {2}\tTempo total de execução (ms): {3}",
-            destinyNode.node.DistanceFromStartNode, dijkstra.Iterations, dijkstra.VisitedNodesQuantity, dijkstra.TimeToFinishTheSearch);
-        print(report);
-
+        UIStatus.Get.SetComponentText(
+            UIStatus.Get.lblResults,
+            string.Format("Dijkstra resultados: \nDistância do caminho: {0} un.\nNúmero de iterações: {1}\nNúmero de nós visitados: {2}\nTempo total de execução (ms): {3}",
+            destinyNode.node.DistanceFromStartNode, dijkstra.Iterations, dijkstra.VisitedNodesQuantity, dijkstra.TimeToFinishTheSearch)
+        );
+                    
         ShowMainPath();
     }
 
@@ -81,11 +93,29 @@ public class TestDijkstra : MonoBehaviour
     {
         if (execute)
         {
-            dijkstra.ResolveDijkstra(graph.Nodes, startNode.node, destinyNode.node);
+            executeMode();
         }
     }
 
     #region Auxiliar Methods
+
+    /// <summary>
+    /// Call resolve dijkstra without showing the generated paths
+    /// </summary>
+    public void ExecuteWithoutShowLines()
+    {
+        dijkstra.ResolveDijkstra(graph.Nodes, startNode.node, destinyNode.node);
+    }
+
+    /// <summary>
+    /// Call resolve dijkstra showing the generated paths
+    /// </summary>
+    public void ExecuteShowingLines()
+    {
+        dijkstra.ResolveDijkstra(graph.Nodes, startNode.node, destinyNode.node);
+
+        ShowMainPath();
+    }
 
     /// <summary>
     /// Iterate from the destiny node using the parent nodes to reach the start node.

@@ -38,6 +38,6 @@ public class NodesUI : MonoBehaviour
             edgesCount += nodeView.nodesToConect.Length;
         }
 
-        print("Número de nós: " + graphView.NodeViewCollection.Length + "\t\tNúmero de arestas: " + edgesCount);
+        UIStatus.Get.SetComponentText(UIStatus.Get.lblInformations, string.Format("Número de nós: {0}\nNúmero de arestas: {1}", graphView.NodeViewCollection.Length, edgesCount));
     }
 }

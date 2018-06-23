@@ -34,6 +34,11 @@ public class DijkstraPlacer : MonoBehaviour
     public GameObject parentLineRenderer;
 
     /// <summary>
+    /// The game object used as container to store all A Star the line renderer objects
+    /// </summary>
+    public GameObject parentAStarLineRenderer;
+
+    /// <summary>
     /// Reference to frame capture utility
     /// </summary>
     public FrameCapture frameCapture;
@@ -62,7 +67,7 @@ public class DijkstraPlacer : MonoBehaviour
             testDijkstraScript.lineDrawer = lineDrawerInstance.GetComponent<LineDrawer>();
             testDijkstraScript.lineDrawer.SetLineRendererParent(parentLineRenderer);
 
-            testDijkstraScript.graphView = this.graphView;            
+            testDijkstraScript.graphView = this.graphView;
 
             testDijkstraScript.startNode = graphView.NodeViewCollection[graphView.startNodesIndex[i]];
             testDijkstraScript.destinyNode = graphView.NodeViewCollection[graphView.destinyNodesIndex[i]];
@@ -77,10 +82,26 @@ public class DijkstraPlacer : MonoBehaviour
     public void InvokeAllAgents()
     {
         frameCapture.dijkstraAgents = agents;
+        GeneralUtility.Get.ClearLineRenderers();
+
+        if (UIStatus.Get.ShowMainPathChecked())
+        {
+            foreach (TestDijkstra agent in agents)
+            {
+                agent.executeMode = agent.ExecuteShowingLines;
+            }
+        }
+        else
+        {
+            foreach (TestDijkstra agent in agents)
+            {                
+                agent.executeMode = agent.ExecuteWithoutShowLines;
+            }
+        }
 
         foreach (TestDijkstra agent in agents)
         {
-            agent.execute = !agent.execute;
+            agent.execute = true;
         }
 
         frameCapture.Capture("Dijkstra");

@@ -6,6 +6,13 @@ using UnityEngine;
 /// </summary>
 public class LineDrawer : MonoBehaviour
 {
+    public LineRenderer LineRenderer
+    {
+        get
+        {
+            return lineRenderer;
+        }
+    }
     /// <summary>
     /// The prefab of the line object.
     /// </summary>

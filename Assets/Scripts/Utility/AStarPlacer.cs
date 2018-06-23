@@ -34,6 +34,11 @@ public class AStarPlacer : MonoBehaviour
     public GameObject parentLineRenderer;
 
     /// <summary>
+    /// The game object used as container to store all the Dijkstra line renderer objects
+    /// </summary>
+    public GameObject parentDijkstraLineRenderer;
+
+    /// <summary>
     /// Reference to frame capture utility
     /// </summary>
     public FrameCapture frameCapture;
@@ -77,10 +82,26 @@ public class AStarPlacer : MonoBehaviour
     public void InvokeAllAgents()
     {
         frameCapture.aStarAgents = agents;
+        GeneralUtility.Get.ClearLineRenderers();
+
+        if (UIStatus.Get.ShowMainPathChecked())
+        {
+            foreach (TestAStar agent in agents)
+            {
+                agent.executeMode = agent.ExecuteShowingLines;
+            }
+        }
+        else
+        {
+            foreach (TestAStar agent in agents)
+            {
+                agent.executeMode = agent.ExecuteWithoutShowLines;
+            }
+        }
 
         foreach (TestAStar agent in agents)
         {
-            agent.execute = !agent.execute;
+            agent.execute = true;
         }
 
         frameCapture.Capture("A*");
